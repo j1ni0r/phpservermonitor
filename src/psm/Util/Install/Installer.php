@@ -248,6 +248,7 @@ class Installer {
 			              `timeout` smallint(1) unsigned NULL DEFAULT NULL,
 			              `website_username` varchar(255) DEFAULT NULL,
 						  `website_password` varchar(255) DEFAULT NULL,
+						  `telefone` varchar(255) DEFAULT NULL,
 						  PRIMARY KEY  (`server_id`)
 						) ENGINE=MyISAM  DEFAULT CHARSET=utf8;",
 			PSM_DB_PREFIX.'servers_uptime' => "CREATE TABLE IF NOT EXISTS `".PSM_DB_PREFIX."servers_uptime` (

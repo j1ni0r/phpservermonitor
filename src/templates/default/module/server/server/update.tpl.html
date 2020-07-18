@@ -82,6 +82,12 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label" for="telefone">{{ label_telefone }}</label>
+			<div class="controls">
+				<input type="text" id="telefone" name="telefone" value="{{ edit_value_telefone }}" maxlength="255" />
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="warning_threshold">{{ label_warning_threshold }}</label>
 			<div class="controls">
 				<input class="input-mini" type="text" id="warning_threshold" name="warning_threshold" value="{{ edit_value_warning_threshold }}" maxlength="5" data-toggle="tooltip" title="{{ label_warning_threshold_description }}" />

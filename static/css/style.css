@@ -9,10 +9,16 @@ body {
 	-moz-user-select: moz-none;
 	-ms-user-select: none;
 	user-select: none;
+	
 }
 
 body.black_background {
-	background: black;
+	background-image: url(../images/promo2.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 0% 0%; 
+	/* background-size: 100%; */
+	/* background: black; */
 }
 
 body.black_background .page-header {
@@ -299,7 +305,7 @@ h2 small {
 .offline, .online {
 	display: inline-block;
 	width: 100%;
-	max-width: 320px;
+	max-width: 220px;
 }
 .entity {
 	text-align: left;

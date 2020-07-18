@@ -195,6 +195,7 @@ class ServerController extends AbstractServerController {
 			$tpl_data = array_merge($tpl_data, array(
 				'edit_value_label' => $edit_server['label'],
 				'edit_value_ip' => $edit_server['ip'],
+				'edit_value_telefone' => $edit_server['telefone'],
 				'edit_value_port' => $edit_server['port'],
 				'edit_value_timeout' => $edit_server['timeout'],
 				'default_value_timeout' => PSM_CURL_TIMEOUT,
@@ -260,6 +261,7 @@ class ServerController extends AbstractServerController {
 		$clean = array(
 			'label' => trim(strip_tags(psm_POST('label', ''))),
 			'ip' => trim(strip_tags(psm_POST('ip', ''))),
+			'telefone' => trim(strip_tags(psm_POST('telefone', ''))),
 			'timeout' => (isset($_POST['timeout']) && intval($_POST['timeout']) > 0) ? intval($_POST['timeout']) : null,
 			'website_username' => psm_POST('website_username'),
 			'website_password' => $encrypted_password,
@@ -450,6 +452,7 @@ class ServerController extends AbstractServerController {
 	protected function getLabels() {
 		return array(
 			'label_label' => psm_get_lang('servers', 'label'),
+			'label_telefone' => psm_get_lang('servers', 'telefone'),
 			'label_status' => psm_get_lang('servers', 'status'),
 			'label_domain' => psm_get_lang('servers', 'domain'),
 			'label_timeout' => psm_get_lang('servers', 'timeout'),

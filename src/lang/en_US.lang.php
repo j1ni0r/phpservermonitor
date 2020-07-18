@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP Server Monitor
  * Monitor your servers and websites.
@@ -69,10 +70,10 @@ $sm_lang = array(
 		'days' => 'days',
 		'hour' => 'hour',
 		'hours' => 'hours',
-		'minute' => 'minute',
-		'minutes' => 'minutes',
-		'second' => 'second',
-		'seconds' => 'seconds',
+		'minute' => 'minuto',
+		'minutes' => 'minutos',
+		'second' => 'segundo',
+		'seconds' => 'segundos',
 		'online' => 'online',
 		'offline' => 'offline',
 	),
@@ -149,6 +150,7 @@ $sm_lang = array(
 		'label' => 'Label',
 		'domain' => 'Domain/IP',
 		'timeout' => 'Timeout',
+		'telefone' => 'Telefone',
 		'timeout_description' => 'Number of seconds to wait for the server to respond.',
 		'authentication_settings' => 'Authentication Settings (Optional)',
 		'website_username' => 'Username',
@@ -295,7 +297,7 @@ $sm_lang = array(
 			'<span class="small">'.
 			'Time in seconds, if 0 the page won\'t refresh.'.
 			'</span>',
-		'seconds' => 'seconds',
+		'seconds' => 'segundos',
 		'test' => 'Test',
 		'test_email' => 'An email will be sent to the address specified in your user profile.',
 		'test_sms' => 'An SMS will be sent to the phone number specified in your user profile.',
@@ -328,13 +330,13 @@ $sm_lang = array(
 		'off_email_body' => "Failed to connect to the following server:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Error: %ERROR%<br/>Date: %DATE%",
 		'off_pushover_title' => 'Server \'%LABEL%\' is DOWN',
 		'off_pushover_message' => "Failed to connect to the following server:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Error: %ERROR%<br/>Date: %DATE%",
-		'off_telegram_message' => "Failed to connect to the following server:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Error: %ERROR%<br/>Date: %DATE%",
+		'off_telegram_message' => " 🚨 %LABEL% OFF <br/>🖥 IP: %IP%<br/>📅 Data: %DATE%<br/>📌 Abrir chamado (172.21.0.3/chamados)<br/>☎️ Telefone Provedor: %TELEFONE%",
 		'on_sms' => 'Server \'%LABEL%\' is RUNNING: ip=%IP%, port=%PORT%, it was down for %LAST_OFFLINE_DURATION%',
 		'on_email_subject' => 'IMPORTANT: Server \'%LABEL%\' is RUNNING',
-		'on_email_body' => "Server '%LABEL%' is running again, it was down for %LAST_OFFLINE_DURATION%:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Date: %DATE%",
+		'on_email_body' => "Server '%LABEL%' is running again, it was down for %LAST_OFFLINE_DURATION%:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Data: %DATE%",
 		'on_pushover_title' => 'Server \'%LABEL%\' is RUNNING',
-		'on_pushover_message' => 'Server \'%LABEL%\' is running again, it was down for %LAST_OFFLINE_DURATION%:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Date: %DATE%',
-		'on_telegram_message' => 'Server \'%LABEL%\' is running again, it was down for %LAST_OFFLINE_DURATION%:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Date: %DATE%',
+		'on_pushover_message' => 'Server \'%LABEL%\' is running again, it was down for %LAST_OFFLINE_DURATION%:<br/><br/>Server: %LABEL%<br/>IP: %IP%<br/>Port: %PORT%<br/>Data: %DATE%',
+		'on_telegram_message' => '✅ %LABEL% ON <br/>ℹ️ Estava OFF por: %LAST_OFFLINE_DURATION%<br/>🖥 IP: %IP%<br/>📅 Data: %DATE%',
 	),
 	'login' => array(
 		'welcome_usermenu' => 'Welcome, %user_name%',

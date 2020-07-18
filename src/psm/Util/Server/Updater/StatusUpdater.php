@@ -83,7 +83,7 @@ class StatusUpdater {
 			'server_id' => $server_id,
 		), array(
 			'server_id', 'ip', 'port', 'label', 'type', 'pattern', 'pattern_online', 'header_name', 'header_value', 'status', 'active', 'warning_threshold',
-			'warning_threshold_counter', 'timeout', 'website_username', 'website_password', 'last_offline'
+			'warning_threshold_counter', 'timeout', 'website_username', 'website_password', 'last_offline', 'telefone'
 		));
 		if (empty($this->server)) {
 			return false;
@@ -153,35 +153,30 @@ class StatusUpdater {
 	 * @return boolean
 	 */
 	protected function updatePing($max_runs, $run = 1) {
-		// save response time
-		$starttime = microtime(true);
-		// set ping payload
-		$package = "\x08\x00\x7d\x4b\x00\x00\x00\x00PingHost";
+          if ($max_runs == NULL || $max_runs > 1) $max_runs = 1;
+          $txt = exec("ping -c " . $max_runs . " " . $this->server['ip']);
+          $re1='.*?';     # Non-greedy match on filler
+          $re2='[+-]?\\d*\\.\\d+(?![-+0-9\\.])';  # Uninteresting: float
+          $re3='.*?';     # Non-greedy match on filler
+          $re4='([+-]?\\d*\\.\\d+)(?![-+0-9\\.])';        # Float 1
 
-		$socket = socket_create(AF_INET, SOCK_RAW, 1);
-		socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => 10, 'usec' => 0));
-		socket_connect($socket, $this->server['ip'], null);
+          if ($c=preg_match_all ("/".$re1.$re2.$re3.$re4."/is", $txt, $matches)) {
+            $result=$matches[1][0];
+          } else { $result = NULL; }
 
-		socket_send($socket, $package, strLen($package), 0);
-		if (socket_read($socket, 255)) {
-			$status = true;
-		} else {
-			$status = false;
+          if (!is_null($result)) {
+            $status = true;
+          } else {
+            $status = false;
+          }
+          $this->rtime =  $result;
 
-			// set error  message
-			$errorcode = socket_last_error();
-			$this->error = "Couldn't create socket [".$errorcode."]: ".socket_strerror($errorcode);
-		}
-		$this->rtime = microtime(true) - $starttime;
-		socket_close($socket);
-
-		// check if server is available and rerun if asked.
-		if (!$status && $run < $max_runs) {
-			return $this->updatePing($max_runs, $run + 1);
-		}
-
-		return $status;
-	}
+          // check if server is available and rerun if asked.
+          if(!$status && $run < $max_runs) {
+            return $this->updatePing($max_runs, $run + 1);
+          }
+          return $status;
+}
 
 	/**
 	 * Check the current server as a service
